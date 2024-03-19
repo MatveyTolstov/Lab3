@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище NIGHTCLUBModelContainer" CdmEntityContainer="NIGHTCLUBEntities3">
+    <EntitySetMapping Name="CLIENTS">
+      <EntityTypeMapping TypeName="NIGHTCLUBModel.CLIENTS">
+        <MappingFragment StoreEntitySet="CLIENTS">
+          <ScalarProperty Name="ID_CLIENTS" ColumnName="ID_CLIENTS" />
+          <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+          <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+          <ScalarProperty Name="MIDNAME" ColumnName="MIDNAME" />
+          <ScalarProperty Name="NUMBER" ColumnName="NUMBER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EVENTS_CLIENTS">
+      <EntityTypeMapping TypeName="NIGHTCLUBModel.EVENTS_CLIENTS">
+        <MappingFragment StoreEntitySet="EVENTS_CLIENTS">
+          <ScalarProperty Name="ID_EVENTS_CLIENTS" ColumnName="ID_EVENTS_CLIENTS" />
+          <ScalarProperty Name="EVENT_NAME" ColumnName="EVENT_NAME" />
+          <ScalarProperty Name="EVENT_DATE" ColumnName="EVENT_DATE" />
+          <ScalarProperty Name="EVENT_DESCRIPTION" ColumnName="EVENT_DESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TABLEBOOKING">
+      <EntityTypeMapping TypeName="NIGHTCLUBModel.TABLEBOOKING">
+        <MappingFragment StoreEntitySet="TABLEBOOKING">
+          <ScalarProperty Name="ID_TABLEBOOKING" ColumnName="ID_TABLEBOOKING" />
+          <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
+          <ScalarProperty Name="EVENT_ID" ColumnName="EVENT_ID" />
+          <ScalarProperty Name="TABLE_NUMBER" ColumnName="TABLE_NUMBER" />
+          <ScalarProperty Name="BOOKING_DATE" ColumnName="BOOKING_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

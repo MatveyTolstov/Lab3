@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище NIGHTCLUBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CLIENTS">
+          <Key>
+            <PropertyRef Name="ID_CLIENTS" />
+          </Key>
+          <Property Name="ID_CLIENTS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIRSTNAME" Type="varchar" MaxLength="30" />
+          <Property Name="SURNAME" Type="varchar" MaxLength="30" />
+          <Property Name="MIDNAME" Type="varchar" MaxLength="30" />
+          <Property Name="NUMBER" Type="int" />
+        </EntityType>
+        <EntityType Name="EVENTS_CLIENTS">
+          <Key>
+            <PropertyRef Name="ID_EVENTS_CLIENTS" />
+          </Key>
+          <Property Name="ID_EVENTS_CLIENTS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EVENT_NAME" Type="varchar" MaxLength="100" />
+          <Property Name="EVENT_DATE" Type="date" />
+          <Property Name="EVENT_DESCRIPTION" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TABLEBOOKING">
+          <Key>
+            <PropertyRef Name="ID_TABLEBOOKING" />
+          </Key>
+          <Property Name="ID_TABLEBOOKING" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CLIENT_ID" Type="int" />
+          <Property Name="EVENT_ID" Type="int" />
+          <Property Name="TABLE_NUMBER" Type="int" />
+          <Property Name="BOOKING_DATE" Type="date" />
+        </EntityType>
+        <Association Name="FK__TABLEBOOK__CLIEN__4D94879B">
+          <End Role="CLIENTS" Type="Self.CLIENTS" Multiplicity="0..1" />
+          <End Role="TABLEBOOKING" Type="Self.TABLEBOOKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTS">
+              <PropertyRef Name="ID_CLIENTS" />
+            </Principal>
+            <Dependent Role="TABLEBOOKING">
+              <PropertyRef Name="CLIENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TABLEBOOK__EVENT__4E88ABD4">
+          <End Role="EVENTS_CLIENTS" Type="Self.EVENTS_CLIENTS" Multiplicity="0..1" />
+          <End Role="TABLEBOOKING" Type="Self.TABLEBOOKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EVENTS_CLIENTS">
+              <PropertyRef Name="ID_EVENTS_CLIENTS" />
+            </Principal>
+            <Dependent Role="TABLEBOOKING">
+              <PropertyRef Name="EVENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище NIGHTCLUBModelContainer">
+          <EntitySet Name="CLIENTS" EntityType="Self.CLIENTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EVENTS_CLIENTS" EntityType="Self.EVENTS_CLIENTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TABLEBOOKING" EntityType="Self.TABLEBOOKING" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__TABLEBOOK__CLIEN__4D94879B" Association="Self.FK__TABLEBOOK__CLIEN__4D94879B">
+            <End Role="CLIENTS" EntitySet="CLIENTS" />
+            <End Role="TABLEBOOKING" EntitySet="TABLEBOOKING" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TABLEBOOK__EVENT__4E88ABD4" Association="Self.FK__TABLEBOOK__EVENT__4E88ABD4">
+            <End Role="EVENTS_CLIENTS" EntitySet="EVENTS_CLIENTS" />
+            <End Role="TABLEBOOKING" EntitySet="TABLEBOOKING" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NIGHTCLUBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CLIENTS">
+          <Key>
+            <PropertyRef Name="ID_CLIENTS" />
+          </Key>
+          <Property Name="ID_CLIENTS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIRSTNAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SURNAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MIDNAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="NUMBER" Type="Int32" />
+          <NavigationProperty Name="TABLEBOOKING" Relationship="Self.FK__TABLEBOOK__CLIEN__4D94879B" FromRole="CLIENTS" ToRole="TABLEBOOKING" />
+        </EntityType>
+        <EntityType Name="EVENTS_CLIENTS">
+          <Key>
+            <PropertyRef Name="ID_EVENTS_CLIENTS" />
+          </Key>
+          <Property Name="ID_EVENTS_CLIENTS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EVENT_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EVENT_DATE" Type="DateTime" Precision="0" />
+          <Property Name="EVENT_DESCRIPTION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TABLEBOOKING" Relationship="Self.FK__TABLEBOOK__EVENT__4E88ABD4" FromRole="EVENTS_CLIENTS" ToRole="TABLEBOOKING" />
+        </EntityType>
+        <EntityType Name="TABLEBOOKING">
+          <Key>
+            <PropertyRef Name="ID_TABLEBOOKING" />
+          </Key>
+          <Property Name="ID_TABLEBOOKING" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CLIENT_ID" Type="Int32" />
+          <Property Name="EVENT_ID" Type="Int32" />
+          <Property Name="TABLE_NUMBER" Type="Int32" />
+          <Property Name="BOOKING_DATE" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="CLIENTS" Relationship="Self.FK__TABLEBOOK__CLIEN__4D94879B" FromRole="TABLEBOOKING" ToRole="CLIENTS" />
+          <NavigationProperty Name="EVENTS_CLIENTS" Relationship="Self.FK__TABLEBOOK__EVENT__4E88ABD4" FromRole="TABLEBOOKING" ToRole="EVENTS_CLIENTS" />
+        </EntityType>
+        <Association Name="FK__TABLEBOOK__CLIEN__4D94879B">
+          <End Role="CLIENTS" Type="Self.CLIENTS" Multiplicity="0..1" />
+          <End Role="TABLEBOOKING" Type="Self.TABLEBOOKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTS">
+              <PropertyRef Name="ID_CLIENTS" />
+            </Principal>
+            <Dependent Role="TABLEBOOKING">
+              <PropertyRef Name="CLIENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TABLEBOOK__EVENT__4E88ABD4">
+          <End Role="EVENTS_CLIENTS" Type="Self.EVENTS_CLIENTS" Multiplicity="0..1" />
+          <End Role="TABLEBOOKING" Type="Self.TABLEBOOKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EVENTS_CLIENTS">
+              <PropertyRef Name="ID_EVENTS_CLIENTS" />
+            </Principal>
+            <Dependent Role="TABLEBOOKING">
+              <PropertyRef Name="EVENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NIGHTCLUBEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CLIENTS" EntityType="Self.CLIENTS" />
+          <EntitySet Name="EVENTS_CLIENTS" EntityType="Self.EVENTS_CLIENTS" />
+          <EntitySet Name="TABLEBOOKING" EntityType="Self.TABLEBOOKING" />
+          <AssociationSet Name="FK__TABLEBOOK__CLIEN__4D94879B" Association="Self.FK__TABLEBOOK__CLIEN__4D94879B">
+            <End Role="CLIENTS" EntitySet="CLIENTS" />
+            <End Role="TABLEBOOKING" EntitySet="TABLEBOOKING" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TABLEBOOK__EVENT__4E88ABD4" Association="Self.FK__TABLEBOOK__EVENT__4E88ABD4">
+            <End Role="EVENTS_CLIENTS" EntitySet="EVENTS_CLIENTS" />
+            <End Role="TABLEBOOKING" EntitySet="TABLEBOOKING" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище NIGHTCLUBModelContainer" CdmEntityContainer="NIGHTCLUBEntities3">
+          <EntitySetMapping Name="CLIENTS">
+            <EntityTypeMapping TypeName="NIGHTCLUBModel.CLIENTS">
+              <MappingFragment StoreEntitySet="CLIENTS">
+                <ScalarProperty Name="ID_CLIENTS" ColumnName="ID_CLIENTS" />
+                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+                <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+                <ScalarProperty Name="MIDNAME" ColumnName="MIDNAME" />
+                <ScalarProperty Name="NUMBER" ColumnName="NUMBER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EVENTS_CLIENTS">
+            <EntityTypeMapping TypeName="NIGHTCLUBModel.EVENTS_CLIENTS">
+              <MappingFragment StoreEntitySet="EVENTS_CLIENTS">
+                <ScalarProperty Name="ID_EVENTS_CLIENTS" ColumnName="ID_EVENTS_CLIENTS" />
+                <ScalarProperty Name="EVENT_NAME" ColumnName="EVENT_NAME" />
+                <ScalarProperty Name="EVENT_DATE" ColumnName="EVENT_DATE" />
+                <ScalarProperty Name="EVENT_DESCRIPTION" ColumnName="EVENT_DESCRIPTION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TABLEBOOKING">
+            <EntityTypeMapping TypeName="NIGHTCLUBModel.TABLEBOOKING">
+              <MappingFragment StoreEntitySet="TABLEBOOKING">
+                <ScalarProperty Name="ID_TABLEBOOKING" ColumnName="ID_TABLEBOOKING" />
+                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
+                <ScalarProperty Name="EVENT_ID" ColumnName="EVENT_ID" />
+                <ScalarProperty Name="TABLE_NUMBER" ColumnName="TABLE_NUMBER" />
+                <ScalarProperty Name="BOOKING_DATE" ColumnName="BOOKING_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

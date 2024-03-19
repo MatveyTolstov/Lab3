@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище NIGHTCLUBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CLIENTS">
+    <Key>
+      <PropertyRef Name="ID_CLIENTS" />
+    </Key>
+    <Property Name="ID_CLIENTS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FIRSTNAME" Type="varchar" MaxLength="30" />
+    <Property Name="SURNAME" Type="varchar" MaxLength="30" />
+    <Property Name="MIDNAME" Type="varchar" MaxLength="30" />
+    <Property Name="NUMBER" Type="int" />
+  </EntityType>
+  <EntityType Name="EVENTS_CLIENTS">
+    <Key>
+      <PropertyRef Name="ID_EVENTS_CLIENTS" />
+    </Key>
+    <Property Name="ID_EVENTS_CLIENTS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EVENT_NAME" Type="varchar" MaxLength="100" />
+    <Property Name="EVENT_DATE" Type="date" />
+    <Property Name="EVENT_DESCRIPTION" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TABLEBOOKING">
+    <Key>
+      <PropertyRef Name="ID_TABLEBOOKING" />
+    </Key>
+    <Property Name="ID_TABLEBOOKING" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CLIENT_ID" Type="int" />
+    <Property Name="EVENT_ID" Type="int" />
+    <Property Name="TABLE_NUMBER" Type="int" />
+    <Property Name="BOOKING_DATE" Type="date" />
+  </EntityType>
+  <Association Name="FK__TABLEBOOK__CLIEN__4D94879B">
+    <End Role="CLIENTS" Type="Self.CLIENTS" Multiplicity="0..1" />
+    <End Role="TABLEBOOKING" Type="Self.TABLEBOOKING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTS">
+        <PropertyRef Name="ID_CLIENTS" />
+      </Principal>
+      <Dependent Role="TABLEBOOKING">
+        <PropertyRef Name="CLIENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TABLEBOOK__EVENT__4E88ABD4">
+    <End Role="EVENTS_CLIENTS" Type="Self.EVENTS_CLIENTS" Multiplicity="0..1" />
+    <End Role="TABLEBOOKING" Type="Self.TABLEBOOKING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EVENTS_CLIENTS">
+        <PropertyRef Name="ID_EVENTS_CLIENTS" />
+      </Principal>
+      <Dependent Role="TABLEBOOKING">
+        <PropertyRef Name="EVENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище NIGHTCLUBModelContainer">
+    <EntitySet Name="CLIENTS" EntityType="Self.CLIENTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EVENTS_CLIENTS" EntityType="Self.EVENTS_CLIENTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TABLEBOOKING" EntityType="Self.TABLEBOOKING" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__TABLEBOOK__CLIEN__4D94879B" Association="Self.FK__TABLEBOOK__CLIEN__4D94879B">
+      <End Role="CLIENTS" EntitySet="CLIENTS" />
+      <End Role="TABLEBOOKING" EntitySet="TABLEBOOKING" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TABLEBOOK__EVENT__4E88ABD4" Association="Self.FK__TABLEBOOK__EVENT__4E88ABD4">
+      <End Role="EVENTS_CLIENTS" EntitySet="EVENTS_CLIENTS" />
+      <End Role="TABLEBOOKING" EntitySet="TABLEBOOKING" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

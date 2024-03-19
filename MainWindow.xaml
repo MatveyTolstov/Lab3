@@ -1,0 +1,30 @@
+﻿<Window x:Class="Lab1Kokoro.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab1Kokoro"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="500">
+    <Window.Background>
+        <ImageBrush ImageSource="/Россия.jpg"/>
+    </Window.Background>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Content="Выберите таблицу NightClub" HorizontalAlignment="Center" Margin="30px" Grid.Row="0"></Label>
+        <Button x:Name="Clients_Button" Grid.Row="1" Content="Перейти на клиентов" Margin="5,10,5,10" Click="Clients_Button_Click"  ></Button>
+        <Button x:Name="Events_Buttons" Grid.Row="2" Content="Перейти на мероприятия" Margin="5,10,5,10" Click="Events_Buttons_Click"></Button>
+        <Button x:Name="TableBooking_Buttons" Grid.Row="3" Content="Перейти на аренду" Margin="5,10,5,10" Click="TableBooking_Buttons_Click"></Button>
+        <Button x:Name="Full_Imfo" Grid.Row="4" Content="Перейти на inner join" Margin="5,10,5,10" Click="Full_Imfo_Click" ></Button>
+        <Button x:Name="EF_Imfo" Grid.Row="5" Content="Перейти на EF inner join" Margin="5,10,5,10" Click="EF_Imfo_Click" ></Button>
+         
+        
+    </Grid>
+</Window>
